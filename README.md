@@ -5,6 +5,9 @@ ESP8266 IR bridge compatible with alexa. Control your IR devices such as a TV by
 The INO sketch make use of the ESP8266IRReceiver and Wemo Emulator libraries.
 The web front end is making use of twitter bootstrap on a SPIFFS filesystem.
 
+**What it does**
+The LittleNodes IR bridge can learn infrared remote codes and play them back to a device by acting on Alexa voice commands.
+
 **Important Prerequisite:**
 Without the frontend HTML/CSS GUI the device will not work. Make sure you upload the GUI files using a SPIFFS upload plugin from the Arduino IDE.
 
