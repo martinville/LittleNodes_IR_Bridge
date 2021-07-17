@@ -19,7 +19,7 @@ I.E "LittleNodes_IR_Bridge-master\SensorWebClient\data"
 Plugin Download: https://github.com/esp8266/arduino-esp8266fs-plugin/releases
 
 **Firmware Install Instructions**
-Flash the firmware (SensorWebClient.ino.bin) using the ESP8266 Download tool using the following settings.
+Flash the firmware (SensorWebClient.ino.bin) using the ESP8266 Download tool with the following settings.
 
 Memory Address 0x0000
 SPI Speed: 26.7Mhz, 
