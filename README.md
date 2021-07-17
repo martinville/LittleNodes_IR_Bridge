@@ -28,6 +28,8 @@ Flash Size: 8Mbit,
 SPI Autoset: Unchecked, 
 DoNotChgBin: Checked
 
+![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/ESPtoolSettings.png)
+
 
 
 
