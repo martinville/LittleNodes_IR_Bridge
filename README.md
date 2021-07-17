@@ -18,6 +18,9 @@ I.E "LittleNodes_IR_Bridge-master\SensorWebClient\data"
 
 Plugin Download: https://github.com/esp8266/arduino-esp8266fs-plugin/releases
 
+![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/ArduinoIDEPlugin.png)
+
+
 **Firmware Install Instructions**
 Flash the firmware (SensorWebClient.ino.bin) using the ESP8266 Download tool with the following settings.
 
