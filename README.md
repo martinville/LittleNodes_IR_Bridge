@@ -33,7 +33,10 @@ DoNotChgBin: Checked
 
 ![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/ESPtoolSettings.png)
 
-
+**Electronics & Pinouts**
+![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/pinout1.png)
+![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/pinout2.png)
+![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/pinout3.png)
 
 
 
