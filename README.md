@@ -34,6 +34,11 @@ DoNotChgBin: Checked
 ![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/ESPtoolSettings.png)
 
 **Electronics & Pinouts**
+There is also an Instructable which you can follow.
+https://www.instructables.com/Alexa-Compatible-IR-Bridge-Using-an-ESP8266/
+
+
+
 ![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/pinout1.jpg)
 ![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/pinout2.jpg)
 ![alt text](https://raw.githubusercontent.com/mailmartinviljoen/LittleNodes_IR_Bridge/master/pinout3.jpg)
