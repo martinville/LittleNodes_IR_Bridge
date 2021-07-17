@@ -16,7 +16,7 @@ https://randomnerdtutorials.com/install-esp8266-filesystem-uploader-arduino-ide/
 After installing the plugin extract the data.zip file and place the contents in a folder called data inside the arduino sketch folder.
 I.E "LittleNodes_IR_Bridge-master\SensorWebClient\data"
 
-Download: https://github.com/esp8266/arduino-esp8266fs-plugin/releases
+Plugin Download: https://github.com/esp8266/arduino-esp8266fs-plugin/releases
 
 **Firmware Install Instructions**
 Flash the firmware (SensorWebClient.ino.bin) using the ESP8266 Download tool using the following settings.
