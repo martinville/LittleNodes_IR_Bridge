@@ -1,3 +1,6 @@
+//LittleNodes IR Bridge
+//By Martin Viljoen 2021-07-17
+
 #include <FS.h> 
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h> 
@@ -34,6 +37,7 @@ int ByPassSetupMode=0;
 int IsInSetupMode=0;
 int IsInOperationalMode=0;
 int SetupOperationalMode=1;
+int FilesystemOK=1;
 
 ESP8266WebServer server(80);
 
@@ -112,6 +116,7 @@ void loop()
   
 }
 
+
 void WaitForSetupMode()
 {
   
@@ -160,6 +165,35 @@ const char* password = "";
   //Indicate node is in setup mode in order to handle web requests.
   IsInSetupMode = 1; 
 
+  //Start the filesystem
+  SPIFFS.begin(); 
+  delay(1000);
+  //Check if essensial GUI files exist
+  Serial.println("Checking if essensial GUI files exist....");
+  CheckGui("index.html.gz");
+  CheckGui("setup.html.gz");
+  CheckGui("savesetup.html.gz");
+  CheckGui("bootstrap.min.css.gz");
+
+  
+  Serial.println("Listing all files....");
+  String str = "";
+  Dir dir = SPIFFS.openDir("/");
+  while (dir.next()) {
+      str += dir.fileName();
+      str += "/";
+      str += dir.fileSize();
+      str += "\r\n";
+  }
+  Serial.println(str);
+  Serial.println("Listing Complete....");
+  if(FilesystemOK==0){
+    Serial.println("*******************************************************************************************************");
+    Serial.println("Filesystem NOT OK: Initialization failed!                                                            **");
+    Serial.println("*******************************************************************************************************");
+  }else{Serial.println("Filesystem OK");}
+
+
   //Start the web server
   server.begin(); 
   server.on("/", fileindex);
@@ -177,28 +211,9 @@ const char* password = "";
   server.on("/fSensorIR3.conf", fSensorIR3);
   server.on("/fSensorIR4.conf", fSensorIR4);
   server.on("/lastircode", lastircode);
-
-  
-
-  
   server.on("/fSSID.conf", fSSID);
   server.on("/fPassword.conf", fPassword);
 
-
-  
-  //Start the filesystem
-  SPIFFS.begin(); 
-  delay(1000);
-  Serial.println("Listing all files....");
-  String str = "";
-  Dir dir = SPIFFS.openDir("/");
-  while (dir.next()) {
-      str += dir.fileName();
-      str += " / ";
-      str += dir.fileSize();
-      str += "\r\n";
-  }
-  Serial.println(str);
   
   //Start IR Receiver
   irrecv.enableIRIn();  // Start the receiver
@@ -207,14 +222,34 @@ const char* password = "";
 
 }
 
+void CheckGui(String FileNameToRead)
+{      
+      //Serial.println("Reading:" + FileNameToRead);    
+      FileNameToRead.trim();      
+      File FileObjR = SPIFFS.open("/" + FileNameToRead , "r");
+      if (!FileObjR) {
+          Serial.println("*******************************************************************************************************");
+          Serial.println("** FS Panic: No GUI found. You MUST upload the GUI otherwise this device will not work!              **");
+          Serial.println("*******************************************************************************************************");
+          Serial.print(FileNameToRead);Serial.println(" not found please ensure you upload it!");
+          FilesystemOK=0;
+      }else{Serial.print(FileNameToRead);Serial.println(" [OK]");}
+
+      FileObjR.close(); 
+}
 
 
 //File Handlers
 void fileindex()
 {
-  Serial.println("loading index.html");
-  File file = SPIFFS.open("/index.html.gz", "r"); 
-  size_t sent = server.streamFile(file, "text/html");
+    //Check if filesystem reported ok else serve an error messages instead of a blank page
+    if(FilesystemOK==0){
+       server.send(200, "text/html", "<h1><b>No GUI found!</b></h1><h3> Please use the ESP tool to upload the GUI.<br></h3>");
+    }else{  
+      Serial.println("loading index.html");
+      File file = SPIFFS.open("/index.html.gz", "r"); 
+      size_t sent = server.streamFile(file, "text/html");
+    }
 }
 void filesetup()
 {
@@ -476,6 +511,8 @@ void ReadConfig(String FileNameToRead)
       
 
 }
+
+
 
 void SendIR1(){
  
